@@ -24,22 +24,28 @@
                 </div>
             </div>
 
-            <div class="email-box">
-                <label for="user-email">이메일</label>
-                <div>
-                    <input type="email" id="user-email"/>
+            <form id="frm-linkbrary-login" action="/views/mylink/folder.html">
+                <div class="email-box">
+                    <label for="user-email">이메일</label>
+                    <div>
+                        <input type="email" id="user-email"/>
+                    </div>
+                    <div class="validation" id="id-validation-msg"></div>
                 </div>
-            </div>
-
-            <div class="password-box">
-                <label for="user-password">비밀번호</label>
-                <div class="password-wrap">
-                    <input type="password" id="user-password" />
-                    <button><img src="/img/icon/eye-off.png" alt="비밀번호 보기"></button>
+                
+                <div class="password-box">
+                    <label for="user-password">비밀번호</label>
+                    <div class="password-wrap">
+                        <input type="password" id="user-password" />
+                        <button id="view-password" type="button">
+                            <!-- <img src="/img/icon/eye-off.png" alt="비밀번호 보기"> -->
+                        </button>
+                    </div>
+                    <div class="validation" id="pwd-validation-msg"></div>
                 </div>
-            </div>
 
-            <button class="login-btn">로그인</button>
+                <button class="login-btn">로그인</button>
+            </form>
 
             <div class="sns-box">
                 <span>소셜로그인</span>
@@ -58,5 +64,7 @@
             </div>
         </div>
     </main>
+
+    <script type="module" src="/js/auth/sign.js"></script>
 </body>
 </html>
