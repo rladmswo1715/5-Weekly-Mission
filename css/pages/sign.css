@@ -50,6 +50,14 @@ main{
     position: absolute;
     top: 35px;
     right: 10px;
+    background-image: url('/img/icon/eye-off.png');
+    width: 16px;
+    height: 13.82px;
+}
+
+.password-wrap > .pwd-eye-on {
+    background-image: url('/img/icon/eye-on.png');
+    height: 10.91px;
 }
 
 input {
@@ -64,6 +72,19 @@ input {
 input:focus {
     outline: none;
     border-color: var(--main-color);
+}
+
+.validation{
+    padding-top: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--var-test-red);
+    line-height: 16.8px;
+}
+
+.emailBlank, .emailFormCheck, .emailCheck, .pwdBlank, .pwdCheck {
+    padding-top: 6px;
+    display: block;
 }
 
 .login-btn{
