@@ -145,7 +145,7 @@ section:nth-of-type(2) > ul > li:nth-of-type(4) > div > div > h2 > span {
     color: transparent;
 }
 
-.main-mobile-img {
+.show-on-mobile {
     display: none;
 }
 
@@ -316,11 +316,11 @@ footer {
         padding-bottom: 16px;
     }
 
-    .main-mobile-img {
+    .show-on-mobile {
         display: inline-block;
     }
 
-    .main-pc-img{
+    .show-on-pc{
         display: none;
     }
 
