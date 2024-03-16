@@ -129,6 +129,10 @@ input:focus {
     height: 42px;
 }
 
+.err-box {
+    border: 1px solid #FF5B56;
+}
+
 @media (max-width: 1199px){
     .main-wrap {
         margin: 200px auto;

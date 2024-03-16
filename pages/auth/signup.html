@@ -22,31 +22,36 @@
                     <a href="./signin.html">로그인 하기</a>
                 </div>
             </div>
-
-            <div class="email-box">
-                <label for="user-email">이메일</label>
-                <div>
-                    <input type="email" id="user-email"/>
+            
+            <form id="frm-linkbrary-signup" action="/pages/mylink/folder.html">
+                <div class="email-box">
+                    <label for="user-email">이메일</label>
+                    <div>
+                        <input type="input" id="user-email"/>
+                    </div>
+                    <div class="validation" id="id-validation-msg"></div>
                 </div>
-            </div>
 
-            <div class="password-box">
-                <label for="user-password">비밀번호</label>
-                <div class="password-wrap">
-                    <input type="password" id="user-password"/>
-                    <button><img src="/img/icon/eye-off.png" alt="비밀번호 보기"></button>
+                <div class="password-box">
+                    <label for="user-password">비밀번호</label>
+                    <div class="password-wrap">
+                        <input type="password" id="user-password"/>
+                        <button type="button" id="view-password"></button>
+                    </div>
+                    <div class="validation" id="pwd-validation-msg"></div>
                 </div>
-            </div>
 
-            <div class="password-box">
-                <label for="verify-password">비밀번호 확인</label>
-                <div class="password-wrap">
-                    <input type="password" id="verify-password" />
-                    <button><img src="/img/icon/eye-off.png" alt="비밀번호 보기"></button>
+                <div class="password-box">
+                    <label for="verify-password">비밀번호 확인</label>
+                    <div class="password-wrap">
+                        <input type="password" id="verify-password" />
+                        <button type="button" id="view-verify-password"></button>
+                    </div>
+                    <div class="validation" id="verify-pwd-validation-msg"></div>
                 </div>
-            </div>
 
-            <button class="login-btn">회원가입</button>
+                <button class="login-btn">회원가입</button>
+            </form>
 
             <div class="sns-box">
                 <span>다른 방식으로 가입하기</span>
@@ -65,5 +70,7 @@
             </div>
         </div>
     </main>
+
+    <script type="module" src="/js/auth/signup.js"></script>
 </body>
 </html>
