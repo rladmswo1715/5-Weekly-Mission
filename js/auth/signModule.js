@@ -21,15 +21,6 @@ export const signSection = {
 
             updateInputStyleByMsg();
             return returnBooleanData;
-        },
-
-        checkDuplicateEmail : function(inputElement) {
-            if(inputElement.value === 'test@codeit.com'){
-                commonFncInsertTextContent(signSection.elementComponents.idValidationDiv, textMsgComponents.findDuplicateEmail);
-                updateInputStyleByMsg();
-                return false;
-            }
-            return true;
         }
     },
 
@@ -72,14 +63,16 @@ export const signSection = {
 }
 
 export const updateInputStyleByMsg = function(){
-
     const arrayDivEl = [elementComponents.idValidationDiv, 
-                        elementComponents.passwordValidationDiv, 
-                        elementComponents.passwordVerifyValidationDiv];
+                        elementComponents.passwordValidationDiv];
 
     const arrayInputBoxEl = [elementComponents.userEmailInput,
-                             elementComponents.userPasswordInput,
-                             elementComponents.userPasswordVerifyInput];
+                             elementComponents.userPasswordInput];
+    
+    if(elementComponents.passwordVerifyValidationDiv !== undefined){
+        arrayDivEl.push(elementComponents.passwordVerifyValidationDiv);
+        arrayInputBoxEl.push(elementComponents.userPasswordVerifyInput);
+    }
     
     arrayDivEl.forEach((divEl, i) => {
         if(divEl.textContent.length > 0){

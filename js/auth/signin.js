@@ -1,26 +1,34 @@
-import { signSection, updateInputStyleByMsg } from "./signModule.js";
-import { commonFncInsertTextContent } from "../utils/common.js";
+import { signSection } from "./signModule.js";
+import { isLogin } from "../utils/webStorage.js";
+import { signinHandler } from "./signApi.js";
+
+isLogin() ? document.location.href = '/pages/mylink/folder.html' : undefined;
 
 const elements = signSection.elementComponents;
 const inputBoxArray = document.querySelectorAll('input');
 
-const signinValidation = function() {
-    if(elements.userEmailInput.value !== 'test@codeit.com' || elements.userPasswordInput.value !== 'codeit101'){
-        commonFncInsertTextContent(elements.idValidationDiv, signSection.textMsgComponents.checkEmail);
-        commonFncInsertTextContent(elements.passwordValidationDiv, signSection.textMsgComponents.checkPassword);
-        updateInputStyleByMsg();
-        return false;
-    }
-    return true;
+const excuteEmailLogic = (element) => {
+    return signSection.emailLogic.emailValidation(element);
+}
+
+const excutePasswordLogic = (element) => {
+    return signSection.passwordLogic.passwordInsertCheck(element);
+}
+
+const signinValidation = () => {
+    if(!excuteEmailLogic(elements.userEmailInput)){ return false; }
+    if(!excutePasswordLogic(elements.userPasswordInput)){ return false; }
+
+    signinHandler();
 }
 
 // 로그인 정보 입력 이벤트
 inputBoxArray.forEach(function(inputBox) {
     inputBox.addEventListener('focusout',function() {
         if(this.id === 'user-email'){
-            signSection.emailLogic.emailValidation(this);
+            excuteEmailLogic(this);
         }else if(this.id === 'user-password'){
-            signSection.passwordLogic.passwordInsertCheck(this);
+            excutePasswordLogic(this);
         }
     });
 });
@@ -28,10 +36,7 @@ inputBoxArray.forEach(function(inputBox) {
 // 로그인 정보 Submit
 document.querySelector("#frm-linkbrary-login").addEventListener('submit',(e) => {
     e.preventDefault();
-
-    if(signinValidation()){
-        e.currentTarget.submit();
-    }
+    signinValidation();
 });
 
 // 패스워드 보이기

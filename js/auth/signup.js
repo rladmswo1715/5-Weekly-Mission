@@ -1,21 +1,25 @@
 import { signSection, updateInputStyleByMsg } from "./signModule.js";
 import { commonFncInsertTextContent } from "../utils/common.js";
+import { isLogin } from "../utils/webStorage.js";
+import { signupHandler, checkDuplicateEmail } from "./signApi.js";
+
+isLogin() ? document.location.href = '/pages/mylink/folder.html' : undefined;
 
 const elements = signSection.elementComponents;
 
-const excuteEmailLogic = function(element) {
+const excuteEmailLogic = (element) => {
     const checkInputEmail = signSection.emailLogic.emailValidation(element);
-    if(checkInputEmail) { return signSection.emailLogic.checkDuplicateEmail(element); }
+    if(checkInputEmail) { return checkDuplicateEmail(element); }
     else { return false };
 }
 
-const excutePasswordLogic = function(element) {
+const excutePasswordLogic = (element) => {
     const checkInputPassword = signSection.passwordLogic.passwordInsertCheck(element);
     if(checkInputPassword) { return signSection.passwordLogic.passwordValidation(element); }
     else { return false };
 }
 
-const signupValidation = function() {
+const signupValidation = () => {
     if(!excuteEmailLogic(elements.userEmailInput)){ return false; }
     if(!excutePasswordLogic(elements.userPasswordInput)){ return false; }
 
@@ -25,7 +29,7 @@ const signupValidation = function() {
         return false;
     }
 
-    return true;
+    signupHandler();
 }
 
 // 이메일 이벤트 -----------------------
@@ -54,7 +58,5 @@ elements.passwordVerifyToggleButton.addEventListener('click', function() {
 // 회원가입 정보 Submit
 document.querySelector("#frm-linkbrary-signup").addEventListener('submit',(e) => {
     e.preventDefault();
-    if(signupValidation()){
-        e.currentTarget.submit();
-    }
+    signupValidation();
 });
