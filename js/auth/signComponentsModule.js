@@ -23,4 +23,6 @@ const textMsgComponents = {
     checkPasswordMatch : "비밀번호가 일치하지 않아요."
 }
 
+
 export { elementComponents, textMsgComponents };
+

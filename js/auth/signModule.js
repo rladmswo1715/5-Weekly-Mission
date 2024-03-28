@@ -2,6 +2,7 @@ import { elementComponents, textMsgComponents } from "./signComponentsModule.js"
 import { emailCheck, passwordCheck } from "../utils/validation.js";
 import { commonFncInsertTextContent } from "../utils/common.js";
 
+
 export const signSection = {
 
     elementComponents : elementComponents,
