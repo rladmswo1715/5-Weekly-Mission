@@ -1,4 +1,4 @@
-import { BASE_URL } from '../utills/constantSetting.js';
+import { BASE_URL } from '../constants/url.js';
 
 export const getFolderInfo = async () => {
 

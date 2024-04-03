@@ -1,5 +1,5 @@
 import './LinkList.css';
-import Link from './Link.js';
+import Link from './Link.jsx';
 
 const FolderList = ({listInfo}) => {
 

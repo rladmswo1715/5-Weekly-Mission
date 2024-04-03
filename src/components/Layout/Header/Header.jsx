@@ -1,8 +1,8 @@
 import './Header.css';
 import main_logo from "../../../assets/icon/main_logo.svg";
 import { useEffect, useState } from 'react';
-import { getSignInProfile } from "../../../api/headerApi.js";
-import UserProfile from './UserProfile.js';
+import { getSignInProfile } from "../../../api/header.js";
+import UserProfile from './UserProfile.jsx';
 
 const Header = () => {
     const [user, setUser] = useState(null);
@@ -16,8 +16,8 @@ const Header = () => {
     }
 
     const handleHeaderScroll = () => {
-        let headerTag = document.getElementsByTagName('header')[0];
-        document.documentElement.scrollTop === 0 ? headerTag.classList.remove('add-blur') : headerTag.classList.add('add-blur');
+        const headerTag = document.getElementsByTagName('header')[0];
+        headerTag.classList.toggle('add-blur', document.documentElement.scrollTop !== 0);
     }
 
     useEffect(() => {

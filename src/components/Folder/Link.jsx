@@ -1,4 +1,4 @@
-import { formatDate, getTimeAgo } from '../../utills/commonFunction.js';
+import { formatDate, getTimeAgo } from '../../utills/time.js';
 import noImg from '../../assets/no-img.png'
 import './Link.css';
 
@@ -6,7 +6,7 @@ const Link = ({linkInfo}) => {
 
     return (
         <div className='link-item'>
-            <a href={linkInfo.url} target='_blank'>
+            <a href={linkInfo.url} target='_blank' rel="noreferrer">
                 <div className='img-box'>
                     <img src={linkInfo.imageSource ? linkInfo.imageSource : noImg} alt='링크 이미지'/>
                 </div>

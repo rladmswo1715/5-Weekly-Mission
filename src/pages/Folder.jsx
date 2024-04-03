@@ -1,9 +1,9 @@
 import './Folder.css';
-import BookMark from '../components/Folder/BookMark';
-import SerchBar from '../components/Folder/SearchBar';
-import LinkList from '../components/Folder/LinkList';
+import BookMark from '../components/folder/BookMark.jsx';
+import SerchBar from '../components/folder/SearchBar.jsx';
+import LinkList from '../components/folder/LinkList.jsx';
 import { useEffect, useState } from "react";
-import { getFolderInfo } from "../api/folderApi.js";
+import { getFolderInfo } from "../api/folder.js";
 
 const Folder = () => {
     const [bookMarkOwner, setBookMarkOwner] = useState(null);
