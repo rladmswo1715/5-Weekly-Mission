@@ -10,3 +10,9 @@
     width: 60px;
     height: 60px;
 }
+
+.owner-shared {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 48px;
+}

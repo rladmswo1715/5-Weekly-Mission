@@ -1,7 +1,7 @@
 import './LinkList.css';
 import Link from './Link.jsx';
 
-const FolderList = ({listInfo}) => {
+const SharedList = ({listInfo}) => {
 
     return (
         <div className="content-list">
@@ -12,4 +12,4 @@ const FolderList = ({listInfo}) => {
     )
 }
 
-export default FolderList;
+export default SharedList;

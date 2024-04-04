@@ -1,6 +1,6 @@
 import { BASE_URL } from '../constants/url.js';
 
-export const getFolderInfo = async () => {
+export const getSharedInfo = async () => {
 
     try{
         const response = await fetch(`${BASE_URL}/api/sample/folder`);

@@ -37,7 +37,7 @@ const Header = () => {
         <header>
             <div className="wrap">
                 <h1 className="logo">
-                    <a href="/folder">
+                    <a href="/shared">
                         <img src={main_logo} alt="로고" />
                     </a>
                 </h1>

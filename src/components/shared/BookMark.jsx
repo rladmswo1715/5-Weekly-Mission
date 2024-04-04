@@ -14,7 +14,7 @@ const BookMark = ({ownerInfo}) => {
                 <span>{owner.name}</span>
             </div>
 
-            <span>{name}</span>
+            <span className='owner-shared'>{name}</span>
         </div>
     );
 }
