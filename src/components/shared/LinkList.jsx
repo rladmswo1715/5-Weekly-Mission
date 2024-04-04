@@ -1,14 +1,14 @@
-import './LinkList.css';
+import * as S from './LinkList.styled.jsx';
 import Link from './Link.jsx';
 
 const SharedList = ({listInfo}) => {
 
     return (
-        <div className="content-list">
+        <S.ContentListBox>
             {listInfo.map((link) => {
                 return <Link key={link.id} linkInfo={link} />
             })}
-        </div>
+        </S.ContentListBox>
     )
 }
 

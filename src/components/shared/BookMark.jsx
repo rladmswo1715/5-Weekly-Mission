@@ -1,4 +1,4 @@
-import './BookMark.css';
+import * as S from './BookMark.styled';
 
 const BookMark = ({ownerInfo}) => {
 
@@ -9,12 +9,12 @@ const BookMark = ({ownerInfo}) => {
 
     return(
         <div>
-            <div className='owner-info'>
+            <S.OwnerInfoWrap>
                 <img src={owner.profileImageSource} alt='소유자 프로필' />
                 <span>{owner.name}</span>
-            </div>
+                </S.OwnerInfoWrap>
 
-            <span className='owner-shared'>{name}</span>
+            <S.OwnerShared>{name}</S.OwnerShared>
         </div>
     );
 }

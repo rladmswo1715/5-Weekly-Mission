@@ -1,4 +1,4 @@
-import './Footer.css';
+import * as S from './Footer.styled';
 import icon_facebook from '../../../assets/icon/icon_facebook.png';
 import icon_twitter from '../../../assets/icon/icon_twitter.png';
 import icon_youtube from '../../../assets/icon/icon_youtube.png';
@@ -25,28 +25,28 @@ const Footer = () => {
     }
     
     return (
-        <footer>
-            <div className="wrap">
-                <div className="footer-content-wrap">
-                    <div className="co-wrap">
-                        <span className="co-name">©codeit - 2023</span>
-                    </div>
+        <S.Footer>
+            <div>
+                <S.FooterContentWrap>
+                    <S.CompanyWrap>
+                        <span>©codeit - 2023</span>
+                    </S.CompanyWrap>
                     <div>
-                        <ul className="service-wrap">
+                        <S.ServiceWrap>
                             <li><a href="#!" onClick={aTagPreventDefault}>Privacy Policy</a></li>
                             <li><a href="#!" onClick={aTagPreventDefault}>FAQ</a></li>
-                        </ul>
+                        </S.ServiceWrap>
                     </div>
                     <div>
-                        <ul className="sns-wrap">
+                        <S.SnsWrap>
                             {snsInfo.url.map((snsInfoUrl, i) => {
                                 return <SnsLink key={snsInfoUrl} url={snsInfoUrl} img={snsInfo.img[i]} imgAlt={snsInfo.imgAlt[i]} />
                             })}
-                        </ul>
+                        </S.SnsWrap>
                     </div>
-                </div>
+                </S.FooterContentWrap>
             </div>
-        </footer>
+        </S.Footer>
     );
 }
 
