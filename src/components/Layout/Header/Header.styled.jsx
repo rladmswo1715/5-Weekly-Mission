@@ -11,6 +11,10 @@ export const Header = styled.header`
         background-color: rgba(240, 246, 255, 0.5);
         backdrop-filter: blur(6px);
     }
+
+    &.static_header {
+        position: static;
+    }
 `
 
 export const HeaderWrap = styled.div`

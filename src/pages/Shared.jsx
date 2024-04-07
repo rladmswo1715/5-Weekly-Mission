@@ -1,7 +1,7 @@
 import * as S from './Shared.styled.jsx';
 import BookMark from '../components/shared/BookMark.jsx';
-import SerchBar from '../components/shared/SearchBar.jsx';
-import LinkList from '../components/shared/LinkList.jsx';
+import SerchBar from '../components/common/SearchBar.jsx';
+import LinkList from '../components/common/LinkList.jsx';
 import { useEffect, useState } from "react";
 import { getSharedInfo } from "../api/shared.js";
 

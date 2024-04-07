@@ -11,6 +11,13 @@ export const LinkItem = styled.div`
 
     & a {
         text-decoration-line: none;
+        position: relative;
+
+        > button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
     }
     & a:link { color: black; } 
     & a:visited { color: black; }
@@ -35,13 +42,19 @@ export const ImgBox = styled.div`
 
 export const ContentBox = styled.div`
     padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 `
 
-export const AgoParagraph = styled.p`
+export const AgoBox = styled.div`
+    display: flex;
+    justify-content: space-between;
     font-size: 13px;
     color: #666666;
     font-weight: 400;
     line-height: 15.51px;
+    position: relative;
 `
 
 export const ContentParagraph = styled.p`
@@ -50,7 +63,7 @@ export const ContentParagraph = styled.p`
     -webkit-line-clamp: 2;
     text-overflow: ellipsis;
     overflow: hidden;
-    padding-top: 10px;
+    height: 48px;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
@@ -58,6 +71,5 @@ export const ContentParagraph = styled.p`
 `
 
 export const CreateParagraph = styled.p`
-    padding-top: 10px;
     line-height: 1.19357142857;
 `

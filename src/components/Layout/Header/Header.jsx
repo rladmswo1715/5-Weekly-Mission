@@ -1,12 +1,15 @@
 import * as S from './Header.styled.jsx';
 import main_logo from "../../../assets/icon/main_logo.svg";
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { getSignInProfile } from "../../../api/header.js";
 import UserProfile from './UserProfile.jsx';
 
 const Header = () => {
     const [user, setUser] = useState(null);
     const [isScrolled, setIsScrolled] = useState(false);
+
+    const location = useLocation();
 
     const handleLoadUserProfile = async () => {
         const userProfile = await getSignInProfile();
@@ -34,7 +37,7 @@ const Header = () => {
     },[]);
 
     return (
-        <S.Header className={isScrolled ? 'add_blur' : ''}>
+        <S.Header className={isScrolled ? (location.pathname === '/folder' ? "add_blur static_header" : "add_blur") : (location.pathname === '/folder' ? "static_header" : "")}>
             <S.HeaderWrap>
                 <h1>
                     <a href="/shared">

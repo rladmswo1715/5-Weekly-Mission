@@ -12,7 +12,7 @@ const BookMark = ({ownerInfo}) => {
             <S.OwnerInfoWrap>
                 <img src={owner.profileImageSource} alt='소유자 프로필' />
                 <span>{owner.name}</span>
-                </S.OwnerInfoWrap>
+            </S.OwnerInfoWrap>
 
             <S.OwnerShared>{name}</S.OwnerShared>
         </div>

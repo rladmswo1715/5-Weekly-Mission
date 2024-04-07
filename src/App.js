@@ -4,6 +4,7 @@ import IncludeLayoutStructure from './components/layout/IncludeLayoutStructure';
 import GlobalStyle from './style/Global.styled';
 
 import Shared from './pages/Shared';
+import Folder from './pages/Folder';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         <Route path="/" element={<IncludeLayoutStructure />} />
         <Route path="/shared" element={<IncludeLayoutStructure />}>
           <Route index element={<Shared />}  />
+        </Route>
+        <Route path="/folder" element={<IncludeLayoutStructure />}>
+          <Route index element={<Folder />}  />
         </Route>
       </Routes>
     </>
