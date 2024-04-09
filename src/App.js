@@ -1,18 +1,24 @@
 import './App.css';
-import './style/form.css';
-import { Routes, Route  } from 'react-router-dom';
-import Header from './components/Layout/Header/Header';
-import Footer from './components/Layout/Footer/Footer.js';
+import { Routes, Route } from 'react-router-dom';
+import IncludeLayoutStructure from './components/layout/IncludeLayoutStructure';
+import GlobalStyle from './style/Global.styled';
+
+import Shared from './pages/Shared';
 import Folder from './pages/Folder';
 
 function App() {
   return (
     <>
-      <Header />
+      <GlobalStyle />
       <Routes>
-          <Route path="/folder" element={<Folder />}/>
+        <Route path="/" element={<IncludeLayoutStructure />} />
+        <Route path="/shared" element={<IncludeLayoutStructure />}>
+          <Route index element={<Shared />}  />
+        </Route>
+        <Route path="/folder" element={<IncludeLayoutStructure />}>
+          <Route index element={<Folder />}  />
+        </Route>
       </Routes>
-      <Footer />
     </>
   );
 }
