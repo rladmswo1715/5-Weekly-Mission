@@ -13,8 +13,25 @@ const byTypeStyle = css`
             right: 20px;
         `
     }
+    ${({usetype}) => 
+        (usetype === 'folderAdd_modal' || usetype === 'folderNameChange_modal' || usetype === 'linkAdd_modal') && css`
+            font-size: 16px;
+            padding: 16px 20px;
+            font-weight: 600;
+            line-height: 19.09px;
+        `
+    }
+    ${({usetype}) => 
+        (usetype === 'folderDelete_modal' || usetype === 'linkDelete_modal') && css`
+            width: 100%;
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 19.09px;
+            background: #FF5B56;
+        `
+    }
 `;
-    
 
 
 export const Button = styled.button`
@@ -25,7 +42,6 @@ export const Button = styled.button`
     border: none;
     text-decoration: none;
     ${byTypeStyle}
-    
 `
 
 

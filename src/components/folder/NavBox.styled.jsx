@@ -7,6 +7,7 @@ export const NavWrapBox = styled.div`
     > ul {
         display: flex;
         gap: 8px;
+        flex-wrap: wrap;
     }
 
     > div {

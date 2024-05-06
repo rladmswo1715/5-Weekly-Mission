@@ -1,8 +1,9 @@
 import * as S from './Button.styled';
 
-const Button = ({children, type}) => {
+const Button = ({children, type, handleButtonClick}) => {
+
     return (
-        <S.Button usetype={type}>{children}</S.Button>
+        <S.Button type="button" usetype={type} onClick={handleButtonClick}>{children}</S.Button>
     );
 }
 

@@ -27,7 +27,7 @@ const Link = ({linkInfo, isSetting}) => {
                     <S.AgoBox>
                         {getTimeAgo(linkInfo.createdAt)}
                         {isSetting && <button onClick={handleKebabClick}><img src={kebab} alt='케밥 아이콘' /></button>}
-                        {isKebabOpen && <KebabList />}
+                        {isKebabOpen && <KebabList linkUrl={linkInfo.url} setKebabOpen={setIsKebabOpen} />}
                     </S.AgoBox>
                     <S.ContentParagraph>{linkInfo.description}</S.ContentParagraph>
                     <S.CreateParagraph>{formatDate(linkInfo.createdAt)}</S.CreateParagraph>
