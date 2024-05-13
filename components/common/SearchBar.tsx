@@ -5,7 +5,7 @@ import Image from "next/image";
 const SearchBar = () => {
   return (
     <S.SearchWrapBox>
-      <Image src={search_icon} alt="서치 돋보기" />
+      <Image src={search_icon} alt="서치 돋보기" width={30} height={30} />
       <input type="text" placeholder="링크를 검색해 보세요." />
     </S.SearchWrapBox>
   );

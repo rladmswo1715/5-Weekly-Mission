@@ -10,6 +10,9 @@ export const LinkAddWrap = styled.section`
 export const ContentBox = styled.div`
   max-width: 1060px;
   margin: 40px auto;
+  @media screen and (max-width: 1124px) {
+    padding: 0 32px;
+  }
 `;
 
 export const FolderBox = styled.div`
@@ -18,4 +21,7 @@ export const FolderBox = styled.div`
 
 export const ContentItemBox = styled.div`
   padding-top: 24px;
+  @media screen and (max-width: 1124px) {
+    padding-top: 0;
+  }
 `;

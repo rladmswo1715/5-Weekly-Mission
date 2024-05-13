@@ -4,6 +4,7 @@ import * as S from "./NavBox.styled";
 import useModal from "@/hooks/useModal";
 import NavItem from "./NavItem";
 import add from "@/public/image/icon/add.svg";
+import addMobile from "@/public/image/icon/add-mobile.svg";
 import shareIcon from "@/public/image/icon/share.svg";
 import penIcon from "@/public/image/icon/pen.svg";
 import deleteIcon from "@/public/image/icon/delete.svg";
@@ -80,12 +81,13 @@ const NavBox = ({ navId, onClickNavItem }: FolderNav) => {
           }
         >
           <span>폴더 추가</span>
-          <Image src={add} alt="추가 아이콘" />
+          <Image src={add} alt="추가 아이콘" className="pc" />
+          <Image src={addMobile} alt="추가 아이콘" className="mo" />
         </button>
       </S.NavWrapBox>
       <S.NavSettingBox>
         <span>{currentNav}</span>
-        {navId && (
+        {navId !== 9999 && (
           <div>
             <button
               onClick={() =>
