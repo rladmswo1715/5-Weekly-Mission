@@ -1,4 +1,4 @@
-import * as S from "./index.styled";
+import * as S from "@/styles/pages/Shared.styled";
 import BookMark from "@/components/shared/BookMark";
 import SerchBar from "@/components/common/SearchBar";
 import LinkList from "@/components/common/LinkList";

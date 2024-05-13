@@ -1,4 +1,4 @@
-import * as S from "./index.styled";
+import * as S from "@/styles/pages/Folder.styled";
 import LinkAdd from "@/components/folder/LinkAdd";
 import SerchBar from "@/components/common/SearchBar";
 import NavBox from "@/components/folder/NavBox";
