@@ -50,7 +50,11 @@ const Folder = () => {
   const handleSearchList = () => {
     if (!searchValue) return linkList;
     const searchList = linkList.filter((item: FolderItem) => {
-      return item.description?.includes(searchValue);
+      return (
+        item.description?.includes(searchValue) ||
+        item.title?.includes(searchValue) ||
+        item.url?.includes(searchValue)
+      );
     });
     return searchList;
   };
