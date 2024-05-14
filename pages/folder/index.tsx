@@ -2,7 +2,7 @@ import * as S from "@/styles/pages/Folder.styled";
 import LinkAdd from "@/components/folder/LinkAdd";
 import SerchBar from "@/components/common/SearchBar";
 import NavBox from "@/components/folder/NavBox";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { getFolderListInfo } from "@/api/folder";
 import LinkList from "@/components/common/LinkList";
 
@@ -20,6 +20,7 @@ interface FolderItem {
 const Folder = () => {
   const [linkList, setLinkList] = useState([]);
   const [navId, setNavId] = useState<number>(9999);
+  const [searchValue, setSearchValue] = useState("");
 
   const handleLoadInfo = async () => {
     const folderListInfo = await getFolderListInfo(navId);
@@ -42,6 +43,25 @@ const Folder = () => {
     handleLoadInfo();
   }, [navId]);
 
+  const handleSearchChange = (value: string) => {
+    setSearchValue(value);
+  };
+
+  const handleSearchList = () => {
+    if (!searchValue) return linkList;
+    const searchList = linkList.filter((item: FolderItem) => {
+      return item.description?.includes(searchValue);
+    });
+    return searchList;
+  };
+
+  const filterLinkList = handleSearchList();
+
+  const handleDeleteBtn = () => {
+    setSearchValue("");
+    handleLoadInfo();
+  };
+
   return (
     <>
       <S.LinkAddWrap>
@@ -49,12 +69,16 @@ const Folder = () => {
       </S.LinkAddWrap>
       <section>
         <S.ContentBox>
-          <SerchBar />
+          <SerchBar
+            value={searchValue}
+            onChangeEvent={handleSearchChange}
+            onClickDeleteBtn={handleDeleteBtn}
+          />
           <S.FolderBox>
             <NavBox navId={navId} onClickNavItem={setNavId} />
           </S.FolderBox>
           <S.ContentItemBox>
-            <LinkList listInfo={linkList} isSetting />
+            <LinkList listInfo={filterLinkList} isSetting />
           </S.ContentItemBox>
         </S.ContentBox>
       </section>
