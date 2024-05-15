@@ -11,6 +11,7 @@ import deleteIcon from "@/public/image/icon/delete.svg";
 import { ModalParam } from "@/types/Modal";
 import { INavItem } from "@/types/FolderNav";
 import Image from "next/image";
+import navEntireTab from "@/constants/folderNav";
 
 interface FolderNav {
   navId?: number;
@@ -35,7 +36,7 @@ const NavBox = ({ navId, onClickNavItem }: FolderNav) => {
   }, []);
 
   useEffect(() => {
-    if (navId === 9999) {
+    if (navId === navEntireTab) {
       setCurrentNav("전체");
     }
 
@@ -56,8 +57,8 @@ const NavBox = ({ navId, onClickNavItem }: FolderNav) => {
           <NavItem
             navName="전체"
             onClick={onClickNavItem}
-            navId={9999}
-            isCurrentNav={navId === 9999 ? true : false}
+            navId={navEntireTab}
+            isCurrentNav={navId === navEntireTab}
           />
           {navList &&
             navList.map((navItem) => {
@@ -87,7 +88,7 @@ const NavBox = ({ navId, onClickNavItem }: FolderNav) => {
       </S.NavWrapBox>
       <S.NavSettingBox>
         <span>{currentNav}</span>
-        {navId !== 9999 && (
+        {navId !== navEntireTab && (
           <div>
             <button
               onClick={() =>

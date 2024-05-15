@@ -4,7 +4,7 @@ import Link from "next/link";
 import main_logo from "@/public/image/icon/main_logo.svg";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getSignInProfile } from "@/api/header";
+import { getSignInProfile } from "@/api/user";
 import UserProfile from "@/components/layout/header/UserProfile";
 import { IUserData } from "@/types/User";
 

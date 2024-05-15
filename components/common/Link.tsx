@@ -16,7 +16,7 @@ const Link = ({ linkInfo, isSetting }: LinkItemParam) => {
     e.preventDefault();
     e.stopPropagation();
 
-    isKebabOpen ? setIsKebabOpen(false) : setIsKebabOpen(true);
+    setIsKebabOpen(!isKebabOpen);
   };
 
   return (

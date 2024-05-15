@@ -1,4 +1,5 @@
 import { BASE_URL } from "@/constants/url";
+import navEntireTab from "@/constants/folderNav";
 
 export const getFolderNavInfo = async () => {
   try {
@@ -17,7 +18,7 @@ export const getFolderNavInfo = async () => {
 
 export const getFolderListInfo = async (id: number) => {
   let query = "/api/users/1/links";
-  if (id !== 9999) {
+  if (id !== navEntireTab) {
     query = `${query}?folderId=${id}`;
   }
 

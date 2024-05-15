@@ -7,27 +7,25 @@ export const Content = styled.div`
   width: 100%;
 `;
 
-export const FolderList = styled.div`
-  > ul {
-    > li {
-      padding: 8px;
+export const FolderList = styled.ul`
+  > li {
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+    &:hover {
+      background: #f0f6ff;
+    }
+
+    &.selected {
+      background: #f0f6ff;
+    }
+
+    > p {
       display: flex;
-      justify-content: space-between;
-      cursor: pointer;
-
-      &:hover {
-        background: #f0f6ff;
-      }
-
-      &.selected {
-        background: #f0f6ff;
-      }
-
-      > p {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-      }
+      gap: 8px;
+      align-items: center;
     }
   }
 `;
@@ -37,6 +35,7 @@ export const NavName = styled.span`
   font-weight: 400;
   line-height: 24px;
 `;
+
 export const LinkCount = styled.span`
   color: #9fa6b2;
   font-size: 14px;

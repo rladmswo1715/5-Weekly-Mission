@@ -2,9 +2,10 @@ import * as S from "@/styles/pages/Folder.styled";
 import LinkAdd from "@/components/folder/LinkAdd";
 import SerchBar from "@/components/common/SearchBar";
 import NavBox from "@/components/folder/NavBox";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getFolderListInfo } from "@/api/folder";
 import LinkList from "@/components/common/LinkList";
+import navEntireTab from "@/constants/folderNav";
 
 interface FolderItem {
   id: number;
@@ -19,7 +20,7 @@ interface FolderItem {
 
 const Folder = () => {
   const [linkList, setLinkList] = useState([]);
-  const [navId, setNavId] = useState<number>(9999);
+  const [navId, setNavId] = useState<number>(navEntireTab);
   const [searchValue, setSearchValue] = useState("");
 
   const handleLoadInfo = async () => {

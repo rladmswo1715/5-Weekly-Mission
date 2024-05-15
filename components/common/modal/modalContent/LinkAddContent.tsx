@@ -38,32 +38,30 @@ const LinkAddContent = () => {
   return (
     <S.Content>
       <S.FolderList>
-        <ul>
-          {navList.map((navItem: INavItem, i) => {
-            return (
-              <li
-                key={navItem.id}
-                onClick={() => handleSelectFolder(i)}
-                ref={() => {
-                  selectedFoler.current[i] = navItem.id;
-                }}
-                className={
-                  selectedFoler.current[i] === currentSelectedFolder
-                    ? "selected"
-                    : ""
-                }
-              >
-                <p>
-                  <S.NavName>{navItem.name}</S.NavName>
-                  <S.LinkCount>{navItem.link?.count}개 링크</S.LinkCount>
-                </p>
-                {selectedFoler.current[i] === currentSelectedFolder && (
-                  <Image src={checkIcon} alt="폴더 선택 아이콘" />
-                )}
-              </li>
-            );
-          })}
-        </ul>
+        {navList.map((navItem: INavItem, i) => {
+          return (
+            <li
+              key={navItem.id}
+              onClick={() => handleSelectFolder(i)}
+              ref={() => {
+                selectedFoler.current[i] = navItem.id;
+              }}
+              className={
+                selectedFoler.current[i] === currentSelectedFolder
+                  ? "selected"
+                  : ""
+              }
+            >
+              <p>
+                <S.NavName>{navItem.name}</S.NavName>
+                <S.LinkCount>{navItem.link?.count}개 링크</S.LinkCount>
+              </p>
+              {selectedFoler.current[i] === currentSelectedFolder && (
+                <Image src={checkIcon} alt="폴더 선택 아이콘" />
+              )}
+            </li>
+          );
+        })}
       </S.FolderList>
       {isLoading && <div>폴더 목록 불러오는중...</div>}
       {isLoading || <Button type="linkAdd_modal">추가하기</Button>}

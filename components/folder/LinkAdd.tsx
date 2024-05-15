@@ -15,17 +15,17 @@ const LinkAdd = () => {
   };
 
   return (
-    <S.LinkAddWrap>
+    <S.LinkAddForm>
       <div>
-        <S.LinkAddIconInInput>
+        <S.LinkAddIconWrap>
           <Image src={linkAdd} alt="링크 추가 아이콘" />
-        </S.LinkAddIconInInput>
+        </S.LinkAddIconWrap>
         <S.LinkAddInput type="text" placeholder="링크를 추가해 보세요" />
         <Button type="linkAdd" handleButtonClick={handleButtonClick}>
           추가하기
         </Button>
       </div>
-    </S.LinkAddWrap>
+    </S.LinkAddForm>
   );
 };
 

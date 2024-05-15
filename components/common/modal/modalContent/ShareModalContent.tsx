@@ -4,13 +4,28 @@ import icon_share_kakao from "@/public/image/icon/icon_share_kakao.svg";
 import icon_share_facebook from "@/public/image/icon/icon_share_facebook.svg";
 import icon_share_link from "@/public/image/icon/icon_share_link.svg";
 import Image from "next/image";
+import { urlCopy } from "@/utills/copy";
 
-const SHARE_OPTION = {
-  keyId: [1, 2, 3],
-  img: [icon_share_kakao, icon_share_facebook, icon_share_link],
-  imgAlt: ["카카오톡 아이콘", "페이스북 아이콘", "링크복사 아이콘"],
-  buttonName: ["카카오톡", "페이스북", "링크 복사"],
-};
+const SHARE_OPTION = [
+  {
+    keyId: "kakaotalk",
+    img: icon_share_kakao,
+    imgAlt: "카카오톡 아이콘",
+    buttonName: "카카오톡",
+  },
+  {
+    keyId: "facebook",
+    img: icon_share_facebook,
+    imgAlt: "페이스북 아이콘",
+    buttonName: "페이스북",
+  },
+  {
+    keyId: "copy",
+    img: icon_share_link,
+    imgAlt: "링크복사 아이콘",
+    buttonName: "링크 복사",
+  },
+];
 
 const ShareModalContent = () => {
   useEffect(() => {
@@ -20,13 +35,13 @@ const ShareModalContent = () => {
 
   const handleShareIcon = (shareOptionBtn: string) => {
     switch (shareOptionBtn) {
-      case "카카오톡":
+      case "kakaotalk":
         shareKakao();
         break;
-      case "페이스북":
+      case "facebook":
         break;
-      case "링크 복사":
-        shareLink();
+      case "copy":
+        urlCopy();
         break;
       default:
         break;
@@ -57,26 +72,17 @@ const ShareModalContent = () => {
     });
   };
 
-  const shareLink = async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      alert("주소가 복사되었습니다.");
-    } catch (error) {
-      alert("주소 복사 실패..");
-    }
-  };
-
   return (
     <>
-      {SHARE_OPTION.buttonName.map((shareOptionBtn, i) => {
+      {SHARE_OPTION.map((itme) => {
         return (
           <>
             <S.ShareContent
-              key={shareOptionBtn}
-              onClick={() => handleShareIcon(shareOptionBtn)}
+              key={itme.keyId}
+              onClick={() => handleShareIcon(itme.keyId)}
             >
-              <Image src={SHARE_OPTION.img[i]} alt={SHARE_OPTION.imgAlt[i]} />
-              <span>{shareOptionBtn}</span>
+              <Image src={itme.img} alt={itme.imgAlt} />
+              <span>{itme.buttonName}</span>
             </S.ShareContent>
           </>
         );
