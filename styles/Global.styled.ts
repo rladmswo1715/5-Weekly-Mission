@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+interface GlobalStyleProps {
+  isRemoveLayoutPage: boolean;
+}
+
+const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 
     /* -------Reset styles------- */
     html, body, div, span, applet, object, iframe,
@@ -32,6 +36,8 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         line-height: 1;
+        background-color: ${(props) =>
+          props.isRemoveLayoutPage ? "#F0F6FF" : "white"};
     }
     ol, ul {
         list-style: none;

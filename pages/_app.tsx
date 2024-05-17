@@ -6,6 +6,7 @@ import Modal from "@/context/Modal";
 import ModalPortal from "@/components/common/modal/ModalPortal";
 
 export default function App({ Component, pageProps }: AppProps) {
+  let isRemoveLayoutPage = false;
   let childContent: React.ReactNode;
   switch (pageProps.layoutType) {
     case "removeLayout":
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <ModalPortal />
         </Modal>
       );
+      isRemoveLayoutPage = true;
       break;
     default:
       childContent = (
@@ -30,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <StyledComponentsRegistry>
-      <GlobalStyle />
+      <GlobalStyle isRemoveLayoutPage={isRemoveLayoutPage} />
       {childContent}
     </StyledComponentsRegistry>
   );

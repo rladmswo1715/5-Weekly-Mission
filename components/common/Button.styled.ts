@@ -33,6 +33,16 @@ const byTypeStyle: any = css<{ usetype: string }>`
       line-height: 19.09px;
       background: #ff5b56;
     `}
+    ${({ usetype }) =>
+    usetype === "sign" &&
+    css`
+      width: 100%;
+      font-size: 18px;
+      padding: 16px 20px;
+      font-weight: 600;
+      line-height: 21.48px;
+      margin: 30px 0 0;
+    `}
 `;
 
 export const Button = styled.button<{ usetype: string }>`
