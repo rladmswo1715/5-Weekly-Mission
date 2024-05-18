@@ -1,9 +1,20 @@
 import * as S from "./Button.styled";
 import { ButtonProps } from "@/types/Button";
 
-const Button = ({ children, type, handleButtonClick }: ButtonProps) => {
+const Button = ({
+  children,
+  btnType = "button",
+  type,
+  handleButtonClick,
+  disabled = false,
+}: ButtonProps) => {
   return (
-    <S.Button type="button" usetype={type} onClick={handleButtonClick}>
+    <S.Button
+      type={btnType}
+      usetype={type}
+      onClick={handleButtonClick}
+      disabled={disabled}
+    >
       {children}
     </S.Button>
   );

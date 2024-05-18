@@ -93,7 +93,13 @@ export const SnsBox = styled.div`
   display: block;
 }
 
-.err-box {
-  border: 1px solid #FF5B56;
-}
+
 */
+
+export const validation = styled.div`
+  padding-top: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--var-test-red);
+  line-height: 16.8px;
+`;

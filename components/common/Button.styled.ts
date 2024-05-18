@@ -53,4 +53,9 @@ export const Button = styled.button<{ usetype: string }>`
   border: none;
   text-decoration: none;
   ${byTypeStyle}
+
+  &:disabled {
+    background: gray;
+    cursor: default;
+  }
 `;

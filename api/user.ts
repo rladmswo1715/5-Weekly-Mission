@@ -16,3 +16,26 @@ export const getSignInProfile = async () => {
 
   return result;
 };
+
+export const postSignIn = async (userData: any) => {
+  let result = null;
+
+  try {
+    const response = await fetch(`${BASE_URL}/api/sign-in`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+    if (!response.ok) {
+      throw new Error(`${response.status}`);
+    }
+
+    result = await response.json();
+  } catch (error) {
+    if (error instanceof Error) alert(`${error.message}에러 발생!`);
+  }
+
+  return result;
+};

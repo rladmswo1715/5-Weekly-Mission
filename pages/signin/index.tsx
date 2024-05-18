@@ -5,6 +5,10 @@ import Link from "next/link";
 import SignInputBox from "@/components/sign/SignInputBox";
 import Button from "@/components/common/Button";
 import SignSns from "@/components/sign/SignSns";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { postSignIn } from "@/api/user";
+import { useRouter } from "next/router";
+import { FormValues } from "@/types/Sign";
 
 export const getStaticProps = async () => {
   return {
@@ -15,6 +19,21 @@ export const getStaticProps = async () => {
 };
 
 const Signin = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, errors },
+  } = useForm<FormValues>({ mode: "onBlur" });
+  const router = useRouter();
+
+  const handleSiginIn: SubmitHandler<FormValues> = async (data) => {
+    const result = await postSignIn(data);
+    if (!result) return;
+
+    localStorage.setItem("userToken", result.data.accessToken);
+    router.push(`/folder`);
+  };
+
   return (
     <S.MainWrap>
       <S.MainContent>
@@ -30,18 +49,20 @@ const Signin = () => {
           </S.SignBox>
         </S.WrapHeadBox>
 
-        <form id="frm-linkbrary-login" action="/pages/mylink/folder.html">
+        <form onSubmit={handleSubmit(handleSiginIn)}>
           <S.EmailBox>
             <S.LoginBoxSpan>이메일</S.LoginBoxSpan>
-            <SignInputBox />
+            <SignInputBox type="email" register={register} errors={errors} />
           </S.EmailBox>
 
           <S.PassWrodBox>
             <S.LoginBoxSpan>비밀번호</S.LoginBoxSpan>
-            <SignInputBox />
+            <SignInputBox type="password" register={register} errors={errors} />
           </S.PassWrodBox>
 
-          <Button type="sign">로그인</Button>
+          <Button btnType="submit" type="sign" disabled={isSubmitting}>
+            로그인
+          </Button>
         </form>
 
         <S.SnsBox>
