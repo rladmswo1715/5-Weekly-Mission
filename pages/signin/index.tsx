@@ -5,8 +5,9 @@ import Link from "next/link";
 import SignInputBox from "@/components/sign/SignInputBox";
 import Button from "@/components/common/Button";
 import SignSns from "@/components/sign/SignSns";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { postSignIn } from "@/api/user";
+import { postSign } from "@/api/user";
 import { useRouter } from "next/router";
 import { FormValues } from "@/types/Sign";
 
@@ -25,10 +26,24 @@ const Signin = () => {
     formState: { isSubmitting, errors },
   } = useForm<FormValues>({ mode: "onBlur" });
   const router = useRouter();
+  const [auth, setAuth] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const token = localStorage.getItem("userToken");
+      setAuth(token);
+    } catch (error) {
+      console.error("Error fetching token:", error);
+    }
+  }, []);
+  if (auth) router.replace("/folder");
 
   const handleSiginIn: SubmitHandler<FormValues> = async (data) => {
-    const result = await postSignIn(data);
-    if (!result) return;
+    const result = await postSign("sign-in", data);
+    if (result.error) {
+      alert("로그인 실패");
+      return;
+    }
 
     localStorage.setItem("userToken", result.data.accessToken);
     router.push(`/folder`);
@@ -52,12 +67,22 @@ const Signin = () => {
         <form onSubmit={handleSubmit(handleSiginIn)}>
           <S.EmailBox>
             <S.LoginBoxSpan>이메일</S.LoginBoxSpan>
-            <SignInputBox type="email" register={register} errors={errors} />
+            <SignInputBox
+              pageType="signIn"
+              type="email"
+              register={register}
+              errors={errors}
+            />
           </S.EmailBox>
 
           <S.PassWrodBox>
             <S.LoginBoxSpan>비밀번호</S.LoginBoxSpan>
-            <SignInputBox type="password" register={register} errors={errors} />
+            <SignInputBox
+              pageType="signIn"
+              type="password"
+              register={register}
+              errors={errors}
+            />
           </S.PassWrodBox>
 
           <Button btnType="submit" type="sign" disabled={isSubmitting}>

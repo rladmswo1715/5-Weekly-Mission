@@ -1,8 +1,9 @@
 import * as S from "./SignInputBox.styled";
 import validationMsg from "@/constants/validationMsg";
-import { emailValidation } from "@/utills/validation";
-import { useState } from "react";
+import { emailValidation, passwordValidation } from "@/utills/validation";
+import { useState, useRef } from "react";
 import { SignInputProps } from "@/types/Sign";
+import { postCheckEmail } from "@/api/user";
 
 interface IInputType {
   [key: string]: {
@@ -10,6 +11,12 @@ interface IInputType {
     placeholder: string;
     inputRegex?: RegExp;
   };
+}
+
+interface IRegisterOption {
+  required: { value: boolean; message: string };
+  pattern?: { value: RegExp; message: string };
+  validate?: (value: string) => Promise<boolean | string>;
 }
 
 let InputOption: IInputType = {
@@ -21,22 +28,40 @@ let InputOption: IInputType = {
   password: {
     textType: "password",
     placeholder: "비밀번호를 입력해 주세요.",
-    // inputRegex: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/,
+  },
+  signUpPassword: {
+    textType: "password",
+    placeholder: "영문, 숫자를 조합해 8자 이상 입력해 주세요.",
+    inputRegex: passwordValidation,
+  },
+  signUpPasswordCheck: {
+    textType: "password",
+    placeholder: "비밀번호와 일치하는 값을 입력해 주세요.",
   },
 };
 
-const SignInputBox = ({ type, register, errors }: SignInputProps) => {
+const SignInputBox = ({
+  pageType,
+  type,
+  register,
+  errors,
+  watch,
+}: SignInputProps) => {
   const [isPwdEyeOn, setPwdEyeOn] = useState(false);
   const [inputTextType, setInputTextType] = useState(
     InputOption[type].textType
   );
   const inputType = InputOption[type];
+  const passwordRef = useRef<string | null>(null);
+  if (watch) {
+    passwordRef.current = watch("signUpPassword");
+  }
 
   let checkRegister;
 
   switch (type) {
     case "email":
-      checkRegister = register("email", {
+      const emailRegisterOptions: IRegisterOption = {
         required: { value: true, message: validationMsg.checkInputEmail },
         ...(inputType.inputRegex && {
           pattern: {
@@ -44,12 +69,39 @@ const SignInputBox = ({ type, register, errors }: SignInputProps) => {
             message: validationMsg.checkValidationEmail,
           },
         }),
-      });
+      };
+
+      if (pageType === "signUp") {
+        emailRegisterOptions.validate = async (value: string) => {
+          const checkEmailResult = await checkEmailExist(value);
+          return checkEmailResult || validationMsg.findDuplicateEmail;
+        };
+      }
+      checkRegister = register(type, emailRegisterOptions);
       break;
 
     case "password":
-      checkRegister = register("password", {
+    case "signUpPassword":
+      const passwordRegisterOptions: IRegisterOption = {
         required: { value: true, message: validationMsg.checkInputPassword },
+      };
+
+      if (type === "signUpPassword") {
+        if (inputType.inputRegex) {
+          passwordRegisterOptions.pattern = {
+            value: inputType.inputRegex,
+            message: validationMsg.checkValidationPassword,
+          };
+        }
+      }
+      checkRegister = register(type, passwordRegisterOptions);
+      break;
+
+    case "signUpPasswordCheck":
+      checkRegister = register(type, {
+        required: { value: true, message: validationMsg.checkInputPassword },
+        validate: (value) =>
+          value === passwordRef.current || validationMsg.checkPasswordMatch,
       });
       break;
   }
@@ -57,6 +109,11 @@ const SignInputBox = ({ type, register, errors }: SignInputProps) => {
   const handlePasswordToggle = () => {
     setPwdEyeOn(!isPwdEyeOn);
     setInputTextType(inputTextType === "password" ? "text" : "password");
+  };
+
+  const checkEmailExist = async (email: string) => {
+    const postCheckEmailResult = await postCheckEmail(email);
+    return postCheckEmailResult?.data?.isUsableNickname;
   };
 
   return (
@@ -68,7 +125,7 @@ const SignInputBox = ({ type, register, errors }: SignInputProps) => {
           errorBox={errors[type] ? true : false}
           {...checkRegister}
         />
-        {type === "password" && (
+        {type.toLowerCase().includes("password") && (
           <S.ViewPassword
             type="button"
             onClick={handlePasswordToggle}
