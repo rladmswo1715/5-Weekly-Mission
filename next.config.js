@@ -19,6 +19,7 @@ const nextConfig = {
       "testing-library.com",
       "static.cdninstagram.com",
       "codeit-front.s3.ap-northeast-2.amazonaws.com",
+      "avatars.githubusercontent.com",
     ],
   },
 };

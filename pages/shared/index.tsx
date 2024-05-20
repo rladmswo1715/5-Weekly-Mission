@@ -23,6 +23,10 @@ const Shared = () => {
     }
   };
 
+  // run build 에러때문에 잠시 작성
+  const handleSearchChange = (value: string) => {};
+  const handleDeleteBtn = () => {};
+
   useEffect(() => {
     handleLoadInfo();
   }, []);
@@ -34,7 +38,11 @@ const Shared = () => {
       </S.SharedInfoWrap>
       <section>
         <S.ContentWrap>
-          <SerchBar />
+          <SerchBar
+            value=""
+            onChangeEvent={handleSearchChange}
+            onClickDeleteBtn={handleDeleteBtn}
+          />
           <LinkList listInfo={linkList} />
         </S.ContentWrap>
       </section>

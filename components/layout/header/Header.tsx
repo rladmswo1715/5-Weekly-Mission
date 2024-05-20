@@ -14,17 +14,20 @@ const Header = () => {
 
   const location = useRouter();
 
-  const handleLoadUserProfile = async () => {
-    const userProfile = await getSignInProfile();
+  const handleLoadUserProfile = async (userToken: string) => {
+    const userProfile = await getSignInProfile(userToken);
 
     if (userProfile !== null) {
-      setUser(userProfile);
+      setUser(userProfile.data[0]);
     }
   };
 
   useEffect(() => {
-    handleLoadUserProfile();
+    const token = localStorage.getItem("userToken");
+    if (token) handleLoadUserProfile(token);
+  }, []);
 
+  useEffect(() => {
     const handleHeaderScroll = () => {
       setIsScrolled(window.scrollY !== 0);
     };

@@ -9,11 +9,15 @@ interface SignUserData {
   password: string;
 }
 
-export const getSignInProfile = async () => {
+export const getSignInProfile = async (userToken: string) => {
   let result = null;
 
   try {
-    const response = await fetch(`${BASE_URL}/api/sample/user`);
+    const response = await fetch(`${BASE_URL}/api/users`, {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+      },
+    });
     if (!response.ok) {
       throw new Error(`${response.status}`);
     }

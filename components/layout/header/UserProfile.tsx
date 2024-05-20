@@ -9,21 +9,16 @@ interface IUser {
 const userProfile = ({ user }: IUser) => {
   if (!user) {
     return (
-      <S.LoginBtn href="/pages/auth/signin.html" className="btn">
+      <S.LoginBtn href="/signin" className="btn">
         로그인
       </S.LoginBtn>
     );
   }
-  const { email, profileImageSource } = user;
+  const { email, image_source } = user;
 
   return (
     <S.UserProfileWrap>
-      <Image
-        src={profileImageSource}
-        width={50}
-        height={50}
-        alt="유저 프로필"
-      />
+      <Image src={image_source} width={50} height={50} alt="유저 프로필" />
       <span>{email}</span>
     </S.UserProfileWrap>
   );
