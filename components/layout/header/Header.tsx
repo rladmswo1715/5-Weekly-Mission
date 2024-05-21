@@ -2,30 +2,46 @@ import * as S from "@/components/layout/header/Header.styled";
 import Image from "next/image";
 import Link from "next/link";
 import main_logo from "@/public/image/icon/main_logo.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { getSignInProfile } from "@/api/user";
 import UserProfile from "@/components/layout/header/UserProfile";
 import { IUserData } from "@/types/User";
+import { UserTokenContext } from "@/context/UserToken";
 
 const Header = () => {
   const [user, setUser] = useState<IUserData | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const location = useRouter();
+  const userInfo = useContext(UserTokenContext);
 
-  const handleLoadUserProfile = async (userToken: string) => {
-    const userProfile = await getSignInProfile(userToken);
+  // const handleLoadUserProfile = async (userToken: string) => {
+  //   const userProfile = await getSignInProfile(userToken);
 
-    if (userProfile !== null) {
-      setUser(userProfile.data[0]);
-    }
+  //   if (userProfile !== null) {
+  //     setUser(userProfile.data[0]);
+  //   }
+  // };
+
+  const handleLoadUserProfile22 = (userInfo: any) => {
+    setUser({
+      id: userInfo.id,
+      name: userInfo.name,
+      email: userInfo.email,
+      image_source: userInfo.image_source,
+    });
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("userToken");
-    if (token) handleLoadUserProfile(token);
-  }, []);
+    // const token = localStorage.getItem("userToken");
+    // if (token) handleLoadUserProfile(token);
+    console.log("zzzz22222222222222222", userInfo);
+    if (userInfo) {
+      console.log("userInfo가 있음", userInfo);
+      handleLoadUserProfile22(userInfo);
+    }
+  }, [userInfo]);
 
   useEffect(() => {
     const handleHeaderScroll = () => {
