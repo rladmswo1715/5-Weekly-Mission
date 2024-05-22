@@ -1,4 +1,10 @@
-import { useState, useEffect, createContext } from "react";
+import {
+  useState,
+  useEffect,
+  createContext,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { getSignInProfile } from "@/api/user";
 
 interface IUserInfo {
@@ -9,10 +15,14 @@ interface IUserInfo {
   email: string;
 }
 
-export const UserTokenContext = createContext<IUserInfo | null>(null);
+export const UserInfoContext = createContext<IUserInfo | null>(null);
+export const UserSetTokenContext = createContext<
+  Dispatch<SetStateAction<string | null>>
+>(() => {});
 
 function UserToken({ children }: any) {
   const [userInfo, setUserInfo] = useState<IUserInfo | null>(null);
+  const [userToken, setUserToken] = useState<string | null>(null);
 
   const handleLoginUserInfo = async (token: string) => {
     const result = await getSignInProfile(token);
@@ -30,14 +40,19 @@ function UserToken({ children }: any) {
 
   useEffect(() => {
     const token = localStorage.getItem("userToken");
-
-    if (token) handleLoginUserInfo(token);
+    if (token) setUserToken(token);
   }, []);
 
+  useEffect(() => {
+    if (userToken) handleLoginUserInfo(userToken);
+  }, [userToken]);
+
   return (
-    <UserTokenContext.Provider value={userInfo}>
-      {children}
-    </UserTokenContext.Provider>
+    <UserInfoContext.Provider value={userInfo}>
+      <UserSetTokenContext.Provider value={setUserToken}>
+        {children}
+      </UserSetTokenContext.Provider>
+    </UserInfoContext.Provider>
   );
 }
 

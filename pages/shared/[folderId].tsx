@@ -5,7 +5,7 @@ import LinkList from "@/components/common/LinkList";
 import { useContext, useEffect, useState } from "react";
 import { getSharedFolderInfo, getSharedLinkList } from "@/api/shared";
 import { getUserInfo } from "@/api/user";
-import { UserTokenContext } from "@/context/UserToken";
+import { UserInfoContext } from "@/context/User";
 import { useRouter } from "next/router";
 
 interface Props {
@@ -27,7 +27,7 @@ const Shared = () => {
   const [linkList, setLinkList] = useState([]);
   const router = useRouter();
   const { folderId } = router.query;
-  const userInfo = useContext(UserTokenContext);
+  const userInfo = useContext(UserInfoContext);
 
   const handleLoadFolderInfo = async () => {
     if (!folderId) return;

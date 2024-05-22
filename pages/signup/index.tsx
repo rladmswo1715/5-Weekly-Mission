@@ -5,11 +5,12 @@ import Link from "next/link";
 import SignInputBox from "@/components/sign/SignInputBox";
 import Button from "@/components/common/Button";
 import SignSns from "@/components/sign/SignSns";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { postSign } from "@/api/user";
 import { useRouter } from "next/router";
 import { FormValues } from "@/types/Sign";
+import { UserSetTokenContext } from "@/context/User";
 
 export const getStaticProps = async () => {
   return {
@@ -28,18 +29,19 @@ const Signup = () => {
   } = useForm<FormValues>({ mode: "onBlur" });
   const router = useRouter();
   const [auth, setAuth] = useState<string | null>(null);
+  const setUserToken = useContext(UserSetTokenContext);
 
   useEffect(() => {
     try {
       const token = localStorage.getItem("userToken");
       setAuth(token);
     } catch (error) {
-      console.error("Error fetching token:", error);
+      console.error("Error fetching Signup token:", error);
     }
   }, []);
   if (auth) router.replace("/folder");
 
-  const handleSiginUp: SubmitHandler<FormValues> = async (data) => {
+  const handleSiginUp: SubmitHandler<FormValues> = async () => {
     const dataSet = {
       email: getValues("email"),
       password: getValues("signUpPassword"),
@@ -51,6 +53,7 @@ const Signup = () => {
     }
 
     localStorage.setItem("userToken", result.data.accessToken);
+    setUserToken(result.data.accessToken);
     router.push(`/folder`);
   };
 

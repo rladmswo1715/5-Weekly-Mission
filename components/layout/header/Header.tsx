@@ -7,14 +7,14 @@ import { useRouter } from "next/router";
 import { getSignInProfile } from "@/api/user";
 import UserProfile from "@/components/layout/header/UserProfile";
 import { IUserData } from "@/types/User";
-import { UserTokenContext } from "@/context/UserToken";
+import { UserInfoContext } from "@/context/User";
 
 const Header = () => {
   const [user, setUser] = useState<IUserData | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const location = useRouter();
-  const userInfo = useContext(UserTokenContext);
+  const userInfo = useContext(UserInfoContext);
 
   // const handleLoadUserProfile = async (userToken: string) => {
   //   const userProfile = await getSignInProfile(userToken);
