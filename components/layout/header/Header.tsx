@@ -36,9 +36,7 @@ const Header = () => {
   useEffect(() => {
     // const token = localStorage.getItem("userToken");
     // if (token) handleLoadUserProfile(token);
-    console.log("zzzz22222222222222222", userInfo);
     if (userInfo) {
-      console.log("userInfo가 있음", userInfo);
       handleLoadUserProfile22(userInfo);
     }
   }, [userInfo]);

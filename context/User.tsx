@@ -1,11 +1,16 @@
-import {
+import React, {
   useState,
   useEffect,
   createContext,
   Dispatch,
   SetStateAction,
+  ReactNode,
 } from "react";
 import { getSignInProfile } from "@/api/user";
+
+interface Props {
+  children: ReactNode;
+}
 
 interface IUserInfo {
   token: string;
@@ -20,14 +25,14 @@ export const UserSetTokenContext = createContext<
   Dispatch<SetStateAction<string | null>>
 >(() => {});
 
-function UserToken({ children }: any) {
+function UserToken({ children }: Props) {
   const [userInfo, setUserInfo] = useState<IUserInfo | null>(null);
   const [userToken, setUserToken] = useState<string | null>(null);
 
   const handleLoginUserInfo = async (token: string) => {
     const result = await getSignInProfile(token);
     const userInfo = result.data[0];
-    console.log("userInfo::", userInfo);
+
     setUserInfo((prev) => ({
       ...prev,
       token: token,
