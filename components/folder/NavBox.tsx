@@ -11,12 +11,10 @@ import deleteIcon from "@/public/image/icon/delete.svg";
 import { ModalParam } from "@/types/Modal";
 import { INavItem } from "@/types/FolderNav";
 import Image from "next/image";
-import navEntireTab from "@/constants/folderNav";
 import { UserInfoContext } from "@/context/User";
 
 interface FolderNav {
   pageNavId?: string | string[];
-  //onClickNavItem: (navId: number) => void;
 }
 
 const NavBox = ({ pageNavId }: FolderNav) => {
@@ -61,11 +59,7 @@ const NavBox = ({ pageNavId }: FolderNav) => {
     <>
       <S.NavWrapBox>
         <S.NavList>
-          <NavItem
-            navName="전체"
-            // onClick={onClickNavItem}
-            isCurrentNav={!pageNavId}
-          />
+          <NavItem navName="전체" isCurrentNav={!pageNavId} />
           {navList &&
             navList.map((navItem) => {
               return (
@@ -73,7 +67,6 @@ const NavBox = ({ pageNavId }: FolderNav) => {
                   key={navItem.id}
                   navName={navItem.name}
                   navId={navItem.id}
-                  // onClick={onClickNavItem}
                   isCurrentNav={
                     pageNavId && navItem.id?.toString() === pageNavId[0]
                       ? true

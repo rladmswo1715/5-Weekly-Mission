@@ -41,6 +41,7 @@ export const SignBox = styled.div`
     color: var(--main-color);
     position: relative;
     top: -4px;
+    border-bottom: 1px solid var(--main-color);
   }
 `;
 
