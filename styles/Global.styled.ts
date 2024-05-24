@@ -5,7 +5,11 @@ interface GlobalStyleProps {
 }
 
 const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
-
+    @font-face {   
+        font-family: 'Pretendard Variable';   
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')     
+        format('woff');   
+    }
     /* -------Reset styles------- */
    * {
         margin: 0;
@@ -71,6 +75,7 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
         --zindex-basic: 100;
         --zindex-modal: 900;
     }
+    
 `;
 
 export default GlobalStyle;

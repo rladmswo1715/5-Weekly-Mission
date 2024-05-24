@@ -70,7 +70,7 @@ const Header = () => {
     >
       <S.HeaderWrap>
         <h1>
-          <Link href="/shared">
+          <Link href="/">
             <Image src={main_logo} alt="로고" />
           </Link>
         </h1>
