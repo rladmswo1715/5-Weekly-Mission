@@ -39,7 +39,6 @@ const NavBox = ({ pageNavId }: FolderNav) => {
   }, [userInfo]);
 
   useEffect(() => {
-    console.log("pageNavId::", pageNavId);
     if (!pageNavId) {
       setCurrentNav("전체");
     }
