@@ -48,7 +48,7 @@ export const EmailBox = styled.div`
   margin-top: 24px;
 `;
 
-export const PassWrodBox = styled.div`
+export const PassWordBox = styled.div`
   margin: 24px 0 0;
 `;
 
@@ -73,28 +73,6 @@ export const SnsBox = styled.div`
     font-weight: 400;
   }
 `;
-
-/*.
-.password-wrap > .pwd-eye-on {
-  background-image: url('/img/icon/eye-on.png');
-  height: 10.91px;
-}
-
-.validation{
-  padding-top: 6px;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--var-test-red);
-  line-height: 16.8px;
-}
-
-.emailBlank, .emailFormCheck, .emailCheck, .pwdBlank, .pwdCheck {
-  padding-top: 6px;
-  display: block;
-}
-
-
-*/
 
 export const validation = styled.div`
   padding-top: 6px;

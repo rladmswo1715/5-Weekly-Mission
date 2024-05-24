@@ -1,6 +1,6 @@
 import * as S from "@/styles/pages/Shared.styled";
 import BookMark from "@/components/shared/BookMark";
-import SerchBar from "@/components/common/SearchBar";
+import SearchBar from "@/components/common/SearchBar";
 import LinkList from "@/components/common/LinkList";
 import { useContext, useEffect, useState } from "react";
 import { getSharedFolderInfo, getSharedLinkList } from "@/api/shared";
@@ -79,16 +79,16 @@ const Shared = () => {
       <S.SharedInfoWrap>
         <BookMark ownerInfo={bookMarkOwner} folderName={folderInfo} />
       </S.SharedInfoWrap>
-      <section>
+      <S.ContentSection>
         <S.ContentWrap>
-          <SerchBar
+          <SearchBar
             value=""
             onChangeEvent={handleSearchChange}
             onClickDeleteBtn={handleDeleteBtn}
           />
           <LinkList listInfo={linkList} />
         </S.ContentWrap>
-      </section>
+      </S.ContentSection>
     </>
   );
 };

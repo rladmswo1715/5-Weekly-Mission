@@ -5,12 +5,13 @@ import Link from "next/link";
 import SignInputBox from "@/components/sign/SignInputBox";
 import Button from "@/components/common/Button";
 import SignSns from "@/components/sign/SignSns";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { postSign } from "@/api/user";
 import { useRouter } from "next/router";
 import { FormValues } from "@/types/Sign";
 import { UserSetTokenContext } from "@/context/User";
+import useIsTokenRedirect from "@/hooks/useIsTokenRedirect";
 
 export const getStaticProps = async () => {
   return {
@@ -28,18 +29,9 @@ const Signup = () => {
     getValues,
   } = useForm<FormValues>({ mode: "onBlur" });
   const router = useRouter();
-  const [auth, setAuth] = useState<string | null>(null);
   const setUserToken = useContext(UserSetTokenContext);
 
-  useEffect(() => {
-    try {
-      const token = localStorage.getItem("userToken");
-      setAuth(token);
-    } catch (error) {
-      console.error("Error fetching Signup token:", error);
-    }
-  }, []);
-  if (auth) router.replace("/folder");
+  useIsTokenRedirect();
 
   const handleSiginUp: SubmitHandler<FormValues> = async () => {
     const dataSet = {
@@ -83,7 +75,7 @@ const Signup = () => {
             />
           </S.EmailBox>
 
-          <S.PassWrodBox>
+          <S.PassWordBox>
             <span>비밀번호</span>
             <SignInputBox
               pageType="signUp"
@@ -91,9 +83,9 @@ const Signup = () => {
               register={register}
               errors={errors}
             />
-          </S.PassWrodBox>
+          </S.PassWordBox>
 
-          <S.PassWrodBox>
+          <S.PassWordBox>
             <span>비밀번호 확인</span>
             <SignInputBox
               pageType="signUp"
@@ -102,7 +94,7 @@ const Signup = () => {
               errors={errors}
               watch={watch}
             />
-          </S.PassWrodBox>
+          </S.PassWordBox>
 
           <Button btnType="submit" type="sign" disabled={isSubmitting}>
             회원가입

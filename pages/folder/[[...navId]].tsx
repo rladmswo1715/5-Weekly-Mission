@@ -1,6 +1,6 @@
 import * as S from "@/styles/pages/Folder.styled";
 import LinkAdd from "@/components/folder/LinkAdd";
-import SerchBar from "@/components/common/SearchBar";
+import SearchBar from "@/components/common/SearchBar";
 import NavBox from "@/components/folder/NavBox";
 import { useContext, useEffect, useState } from "react";
 import { getFolderListInfo } from "@/api/folder";
@@ -70,9 +70,9 @@ const Folder = () => {
       <S.LinkAddWrap>
         <LinkAdd />
       </S.LinkAddWrap>
-      <section>
+      <S.ContentSection>
         <S.ContentBox>
-          <SerchBar
+          <SearchBar
             value={searchValue}
             onChangeEvent={handleSearchChange}
             onClickDeleteBtn={handleDeleteBtn}
@@ -84,7 +84,7 @@ const Folder = () => {
             <LinkList listInfo={filterLinkList} isSetting />
           </S.ContentItemBox>
         </S.ContentBox>
-      </section>
+      </S.ContentSection>
     </>
   );
 };
