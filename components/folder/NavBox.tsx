@@ -25,7 +25,7 @@ const NavBox = ({ pageNavId }: FolderNav) => {
 
   const handleGetNavData = async () => {
     if (!userInfo) return;
-    const folderNavInfo = await getFolderNavInfo(userInfo.token);
+    const folderNavInfo = await getFolderNavInfo(userInfo.id);
 
     if (folderNavInfo !== null) {
       setNavList(folderNavInfo.data.folder);

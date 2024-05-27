@@ -20,10 +20,10 @@ const LinkAddContent = () => {
         setIsLoading(true);
 
         if (!userInfo) return;
-        const response = await getFolderNavInfo(userInfo?.token);
+        const response = await getFolderNavInfo(userInfo?.id);
 
         if (response !== null) {
-          setNavList(response.data.folder);
+          setNavList(response.data);
         }
       } catch (error) {
         console.log(error);
@@ -43,6 +43,7 @@ const LinkAddContent = () => {
     <S.Content>
       <S.FolderList>
         {navList.map((navItem: INavItem, i) => {
+          console.log(navItem);
           return (
             <li
               key={navItem.id}

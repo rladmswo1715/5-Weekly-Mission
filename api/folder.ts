@@ -1,12 +1,8 @@
 import { BASE_URL } from "@/constants/url";
 
-export const getFolderNavInfo = async (userToken: string) => {
+export const getFolderNavInfo = async (userId: number) => {
   try {
-    const response = await fetch(`${BASE_URL}/api/folders`, {
-      headers: {
-        Authorization: `Bearer ${userToken}`,
-      },
-    });
+    const response = await fetch(`${BASE_URL}/api/users/${userId}/folders`);
     if (!response.ok) {
       throw new Error(`${response.status}`);
     }
