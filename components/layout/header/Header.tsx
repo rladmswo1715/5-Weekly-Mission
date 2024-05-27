@@ -15,7 +15,7 @@ const Header = () => {
   const location = useRouter();
   const userInfo = useContext(UserInfoContext);
 
-  const handleLoadUserProfile22 = (userInfo: any) => {
+  const handleLoadUserProfile = (userInfo: IUserData) => {
     setUser({
       id: userInfo.id,
       name: userInfo.name,
@@ -26,7 +26,7 @@ const Header = () => {
 
   useEffect(() => {
     if (userInfo) {
-      handleLoadUserProfile22(userInfo);
+      handleLoadUserProfile(userInfo);
     }
   }, [userInfo]);
 
