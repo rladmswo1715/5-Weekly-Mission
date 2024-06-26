@@ -1,6 +1,8 @@
 import * as S from "./KebabList.styled";
 import useModal from "@/hooks/useModal";
 import { ModalParam } from "@/types/Modal";
+import LinkDeleteContent from "./modal/modalContent/LinkDeleteContent";
+import LinkAddContent from "./modal/modalContent/LinkAddContent";
 
 interface IKebabList {
   linkUrl: string;
@@ -12,11 +14,11 @@ const KebabList = ({ linkUrl, setKebabOpen }: IKebabList) => {
 
   const handleOpenModal = (
     e: React.MouseEvent,
-    { type, props }: ModalParam
+    { props, component }: ModalParam
   ) => {
     e.preventDefault();
     setKebabOpen(false);
-    openModal({ type, props });
+    openModal({ props, component });
   };
 
   return (
@@ -24,8 +26,8 @@ const KebabList = ({ linkUrl, setKebabOpen }: IKebabList) => {
       <S.KebabListItem
         onClick={(e) => {
           handleOpenModal(e, {
-            type: "linkDelete",
             props: { title: "링크 삭제", subTitle: linkUrl },
+            component: <LinkDeleteContent />,
           });
         }}
       >
@@ -34,8 +36,8 @@ const KebabList = ({ linkUrl, setKebabOpen }: IKebabList) => {
       <S.KebabListItem
         onClick={(e) => {
           handleOpenModal(e, {
-            type: "linkAdd",
             props: { title: "폴더에 추가", subTitle: "링크 주소" },
+            component: <LinkAddContent />,
           });
         }}
       >

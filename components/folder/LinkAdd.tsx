@@ -3,14 +3,15 @@ import useModal from "@/hooks/useModal";
 import linkAdd from "@/public/image/icon/link-add.svg";
 import Button from "@/components/common/Button";
 import Image from "next/image";
+import LinkAddContent from "../common/modal/modalContent/LinkAddContent";
 
 const LinkAdd = () => {
   const { openModal } = useModal();
 
   const handleButtonClick = () => {
     openModal({
-      type: "linkAdd",
       props: { title: "폴더에 추가", subTitle: "링크 주소" },
+      component: <LinkAddContent />,
     });
   };
 
