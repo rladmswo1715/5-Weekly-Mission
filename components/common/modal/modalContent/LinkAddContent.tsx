@@ -43,7 +43,6 @@ const LinkAddContent = () => {
     <S.Content>
       <S.FolderList>
         {navList.map((navItem: INavItem, i) => {
-          console.log(navItem);
           return (
             <li
               key={navItem.id}

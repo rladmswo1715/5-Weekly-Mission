@@ -44,7 +44,7 @@ const Folder = () => {
     navId: string | string[] | undefined
   ) => {
     const resultData = await getFolderListInfo(navId, userInfo?.token);
-    setLinkList(resultData.data.folder);
+    setLinkList(resultData);
   };
 
   const handleSearchList = () => {

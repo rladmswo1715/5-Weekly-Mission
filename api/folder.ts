@@ -2,12 +2,12 @@ import { BASE_URL } from "@/constants/url";
 
 export const getFolderNavInfo = async (userId: number) => {
   try {
-    const response = await fetch(`${BASE_URL}/api/users/${userId}/folders`);
+    const response = await fetch(`${BASE_URL}/users/${userId}/folders`);
     if (!response.ok) {
       throw new Error(`${response.status}`);
     }
-
     const result = await response.json();
+
     return result;
   } catch (error) {
     if (error instanceof Error) alert(`${error.message}에러 발생!`);
@@ -19,9 +19,9 @@ export const getFolderListInfo = async (
   navId: string | string[] | undefined,
   userToken: string | undefined
 ) => {
-  let query = "/api/links";
+  let query = "/links";
   if (navId) {
-    query += `?folderId=${navId}`;
+    query = `/folders/${navId}${query}`;
   }
 
   try {

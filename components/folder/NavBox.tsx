@@ -32,7 +32,7 @@ const NavBox = ({ pageNavId }: FolderNav) => {
     const folderNavInfo = await getFolderNavInfo(userInfo.id);
 
     if (folderNavInfo !== null) {
-      setNavList(folderNavInfo.data);
+      setNavList(folderNavInfo);
     }
   };
 
