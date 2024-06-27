@@ -44,16 +44,16 @@ const NavBox = ({ pageNavId }: FolderNav) => {
     if (!pageNavId) {
       setCurrentNav("전체");
     }
-
     navList.forEach((navListItem: INavItem) => {
       if (
         navListItem.name &&
         pageNavId &&
         navListItem.id === parseInt(pageNavId[0])
-      )
+      ) {
         setCurrentNav(navListItem.name);
+      }
     });
-  }, [pageNavId]);
+  }, [pageNavId, navList]);
 
   const handleOpenModal = ({ props, component }: ModalParam) => {
     openModal({ props, component: component });
@@ -112,7 +112,12 @@ const NavBox = ({ pageNavId }: FolderNav) => {
               onClick={() =>
                 handleOpenModal({
                   props: { title: "폴더 이름 변경" },
-                  component: <FolderNameChangeContent />,
+                  component: (
+                    <FolderNameChangeContent
+                      pageNavId={pageNavId}
+                      navName={currentNav}
+                    />
+                  ),
                 })
               }
             >

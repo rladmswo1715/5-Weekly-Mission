@@ -6,7 +6,6 @@ type ModalPorps = {
 };
 
 export interface ModalParam {
-  //type: ModalType;
   props: ModalPorps;
   component: ReactNode;
 }

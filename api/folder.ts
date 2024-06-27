@@ -44,3 +44,41 @@ export const getFolderListInfo = async (
     return false;
   }
 };
+
+export const addFolder = async (folderName: string, userToken: string) => {
+  const response = await fetch(`${BASE_URL}/folders`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: folderName,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to add Folder!!");
+  }
+};
+
+export const changeFolderName = async (
+  pageNavId: string | string[],
+  folderName: string,
+  userToken: string
+) => {
+  const response = await fetch(`${BASE_URL}/folders/${pageNavId}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: folderName,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to add Folder!!");
+  }
+};

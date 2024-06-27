@@ -44,8 +44,8 @@ const Signup = () => {
       return;
     }
 
-    localStorage.setItem("userToken", result.data.accessToken);
-    setUserToken(result.data.accessToken);
+    localStorage.setItem("userToken", result.accessToken);
+    setUserToken(result.accessToken);
     router.push(`/folder`);
   };
 

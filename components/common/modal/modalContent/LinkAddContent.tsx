@@ -23,7 +23,7 @@ const LinkAddContent = () => {
         const response = await getFolderNavInfo(userInfo?.id);
 
         if (response !== null) {
-          setNavList(response.data);
+          setNavList(response);
         }
       } catch (error) {
         console.log(error);

@@ -71,7 +71,7 @@ export const postCheckEmail = async (email: string) => {
   let result = null;
 
   try {
-    const response = await fetch(`${BASE_URL}/check-email`, {
+    const response = await fetch(`${BASE_URL}/users/check-email`, {
       method: "POST",
       headers: POST_HEADER,
       body: JSON.stringify({ email: email }),
