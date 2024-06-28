@@ -38,7 +38,7 @@ const LinkAddContent = () => {
   const handleSelectFolder = (i: number) => {
     setFolder(selectedFoler.current[i]);
   };
-
+  console.log(navList);
   return (
     <S.Content>
       <S.FolderList>
@@ -58,7 +58,7 @@ const LinkAddContent = () => {
             >
               <p>
                 <S.NavName>{navItem.name}</S.NavName>
-                <S.LinkCount>{navItem.link?.count}개 링크</S.LinkCount>
+                <S.LinkCount>{navItem.link_count}개 링크</S.LinkCount>
               </p>
               {selectedFoler.current[i] === currentSelectedFolder && (
                 <Image src={checkIcon} alt="폴더 선택 아이콘" />

@@ -128,7 +128,7 @@ const NavBox = ({ pageNavId }: FolderNav) => {
               onClick={() =>
                 handleOpenModal({
                   props: { title: "폴더 삭제", subTitle: currentNav },
-                  component: <FolderDeleteContent />,
+                  component: <FolderDeleteContent pageNavId={pageNavId} />,
                 })
               }
             >

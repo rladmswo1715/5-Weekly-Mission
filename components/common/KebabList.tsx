@@ -5,11 +5,12 @@ import LinkDeleteContent from "./modal/modalContent/LinkDeleteContent";
 import LinkAddContent from "./modal/modalContent/LinkAddContent";
 
 interface IKebabList {
+  linkId: number;
   linkUrl: string;
   setKebabOpen: (isOpen: boolean) => void;
 }
 
-const KebabList = ({ linkUrl, setKebabOpen }: IKebabList) => {
+const KebabList = ({ linkId, linkUrl, setKebabOpen }: IKebabList) => {
   const { openModal } = useModal();
 
   const handleOpenModal = (
@@ -27,7 +28,7 @@ const KebabList = ({ linkUrl, setKebabOpen }: IKebabList) => {
         onClick={(e) => {
           handleOpenModal(e, {
             props: { title: "링크 삭제", subTitle: linkUrl },
-            component: <LinkDeleteContent />,
+            component: <LinkDeleteContent linkId={linkId} />,
           });
         }}
       >

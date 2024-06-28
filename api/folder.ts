@@ -82,3 +82,32 @@ export const changeFolderName = async (
     throw new Error("Failed to add Folder!!");
   }
 };
+
+export const deleteFolder = async (
+  pageNavId: string | string[],
+  userToken: string
+) => {
+  const response = await fetch(`${BASE_URL}/folders/${pageNavId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to add Folder!!");
+  }
+};
+
+export const deleteLink = async (linkId: number, userToken: string) => {
+  const response = await fetch(`${BASE_URL}/links/${linkId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to add Folder!!");
+  }
+};
