@@ -99,6 +99,31 @@ export const deleteFolder = async (
   }
 };
 
+export const addLink = async (
+  linkUrl: string,
+  folderId: number,
+  userToken: string
+) => {
+  const response = await fetch(`${BASE_URL}/links`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      url: linkUrl,
+      folderId: folderId,
+    }),
+  });
+
+  if (!response.ok) {
+    if (response.status === 400) {
+      throw new Error("이미 존재하는 URL입니다.");
+    }
+    throw new Error("Failed to add Folder!!");
+  }
+};
+
 export const deleteLink = async (linkId: number, userToken: string) => {
   const response = await fetch(`${BASE_URL}/links/${linkId}`, {
     method: "DELETE",

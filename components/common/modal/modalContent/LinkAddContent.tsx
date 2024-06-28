@@ -1,18 +1,27 @@
 import * as S from "./LinkAddContent.styled";
 import { useState, useEffect, useRef, useContext } from "react";
 import Button from "@/components/common/Button";
-import { getFolderNavInfo } from "@/api/folder";
+import { addLink, getFolderNavInfo } from "@/api/folder";
 import checkIcon from "@/public/image/icon/check.svg";
 import { INavItem } from "@/types/FolderNav";
 import Image from "next/image";
 import { UserInfoContext } from "@/context/User";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/router";
+import useModal from "@/hooks/useModal";
 
-const LinkAddContent = () => {
+interface ILinkAddContentProps {
+  linkUrl: string;
+}
+
+const LinkAddContent = ({ linkUrl }: ILinkAddContentProps) => {
   const [navList, setNavList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentSelectedFolder, setFolder] = useState(null);
+  const [currentSelectedFolder, setFolder] = useState<number>();
   const selectedFoler: React.MutableRefObject<any> = useRef({});
   const userInfo = useContext(UserInfoContext);
+  const router = useRouter();
+  const { closeModal } = useModal();
 
   useEffect(() => {
     const folderNavInfo = async () => {
@@ -38,7 +47,37 @@ const LinkAddContent = () => {
   const handleSelectFolder = (i: number) => {
     setFolder(selectedFoler.current[i]);
   };
-  console.log(navList);
+
+  const handleLinkAdd = useMutation({
+    mutationFn: () => {
+      if (!userInfo || !userInfo.token) {
+        return Promise.reject(new Error("UserToken Error!"));
+      } else if (!currentSelectedFolder) {
+        return Promise.reject(new Error("No Seleted Folder!"));
+      }
+      return addLink(linkUrl, currentSelectedFolder, userInfo.token);
+    },
+    onSuccess: () => {
+      alert("링크 생성 성공");
+      closeModal();
+      router.push(`/folder/${currentSelectedFolder}`);
+    },
+    onError: (error) => {
+      alert(error.message);
+    },
+  });
+
+  const handleLinkAddBtnClick = () => {
+    if (!currentSelectedFolder) {
+      alert("폴더를 선택해주세요.");
+      return;
+    } else if (linkUrl === "") {
+      alert("url을 입력해주세요.");
+      return;
+    }
+    handleLinkAdd.mutate();
+  };
+
   return (
     <S.Content>
       <S.FolderList>
@@ -68,7 +107,11 @@ const LinkAddContent = () => {
         })}
       </S.FolderList>
       {isLoading && <div>폴더 목록 불러오는중...</div>}
-      {isLoading || <Button type="linkAdd_modal">추가하기</Button>}
+      {isLoading || (
+        <Button type="linkAdd_modal" handleButtonClick={handleLinkAddBtnClick}>
+          추가하기
+        </Button>
+      )}
     </S.Content>
   );
 };

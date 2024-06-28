@@ -37,8 +37,8 @@ const KebabList = ({ linkId, linkUrl, setKebabOpen }: IKebabList) => {
       <S.KebabListItem
         onClick={(e) => {
           handleOpenModal(e, {
-            props: { title: "폴더에 추가", subTitle: "링크 주소" },
-            component: <LinkAddContent />,
+            props: { title: "폴더에 추가", subTitle: linkUrl },
+            component: <LinkAddContent linkUrl={linkUrl} />,
           });
         }}
       >
